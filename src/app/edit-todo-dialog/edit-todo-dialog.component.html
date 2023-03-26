@@ -1,0 +1,32 @@
+<h1 class="title">Edit Todo</h1>
+
+<div mat-dialog-contet>
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <div class="form-group d-flex" style="margin: 0">
+            <input [ngModel]="todo.text" #todoTextField="ngModel" required minlength="2" name="text"
+                class="form-control mx-2" type="text" placeholder="Type todo text here ...">
+        </div>
+
+        <div class="m-2" *ngIf="todoTextField.invalid">
+            <p class="text-danger" *ngIf="todoTextField.errors && todoTextField.errors['required']">Please enter the
+                text of your todo</p>
+            <p class="text-danger" *ngIf="todoTextField.errors && todoTextField.errors['minlength']">Todo text must
+                be at least 2 characters
+            </p>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <div class="mx-2">
+                <button type="button" class="btn btn-light" (click)="close()">
+                    Cancel
+                </button>
+            </div>
+            <div class="mx-2">
+                <button type="submit" class="btn btn-primary alt-gradient-button">
+                    <i class="bi bi-save bootstrap-icons"></i>
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

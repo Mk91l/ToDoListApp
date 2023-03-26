@@ -1,0 +1,113 @@
+/** TODO ITEM **/
+.todo-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 25px 15px;
+    border-bottom: 1px solid #f2f3f5;
+}
+
+.todo-item.completed {
+    color: #aaa;
+}
+
+/** CHECK BOX **/
+.todo-item>.check-box {
+    display: flex;
+    flex-shrink: 0;
+    border: 2px solid #eee;
+    border-radius: 50%;
+    margin-right: 20px;
+    height: 21px;
+    width: 21px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.todo-item>.check-box i.bootstrap-icons {
+    margin: -0.025em;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.2s;
+    vertical-align: 0.2em!important;
+}
+.todo-item>.check-box i.bootstrap-icons::before {
+    vertical-align: 0.2em!important;
+}
+
+.todo-item:hover>.check-box {
+    background: #eee;
+}
+
+.todo-item:hover>.check-box i.bootstrap-icons {
+    opacity: 0.28;
+}
+
+.todo-item.completed>.check-box {
+    background: rgb(11, 223, 170);
+    border-color: rgb(11, 223, 170);
+}
+
+.todo-item.completed>.check-box i.bootstrap-icons {
+    opacity: 1;
+}
+
+/** CONTROLS BUTTONS **/
+
+.todo-item>.todo-controls-box {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(2px);
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+}
+
+.todo-item:hover>.todo-controls-box {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.4s;
+    transform: translateY(0);
+}
+
+.todo-controls-box>.todo-control-button {
+    display: flex;
+    background: #f5f7f8;
+    padding: 7px 10px;
+}
+
+.todo-controls-box>.todo-control-button i.bootstrap-icons {
+    color: #555;
+    font-size: 20px;
+}
+
+.todo-controls-box>.todo-control-button:hover {
+    background: #eee;
+}
+
+.todo-controls-box>.todo-control-button:hover i.bootstrap-icons {
+    color: #333;
+}
+
+.todo-controls-box>.todo-control-button:active {
+    background: #e5e7e8;
+}
+
+.todo-controls-box>.todo-control-button:first-of-type {
+    border-top-left-radius: 7px;
+}
+
+.todo-controls-box>.todo-control-button:last-of-type {
+    border-top-right-radius: 7px;
+}
+
+.todo-controls-box>.todo-control-button.is-danger:hover i.bootstrap-icons {
+    color: rgb(155, 27, 27);
+}
+
+.todo-controls-box>.todo-control-button.is-danger:active i.bootstrap-icons {
+    color: rgb(189, 37, 37);
+}

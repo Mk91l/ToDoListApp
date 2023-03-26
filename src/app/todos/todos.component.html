@@ -1,0 +1,60 @@
+<!-- Section - L' elemento HTML rappresenta una sezione generica autonoma di un documento -->
+<section class="heading-section">
+    <h1 class="title text-center">Todos</h1>
+</section>
+<div class="container add-todo-box-container">
+    <div class="add-todo-box">
+
+        <!-- Importando FormsModule nel componente, Angular ha creato e allegato 
+            automaticamente una direttiva NgForm al <form> tag nel modello 
+            (perché NgForm ha il selettore form che corrisponde ai <form> elements).
+            Per ottenere l'accesso al modulo NgForm e allo stato generale, 
+            dichiariamo una variabile di riferimento del modello. -->
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+            <h2 class="title">
+                New Todo
+            </h2>
+
+            <div class="form-group d-flex" style="margin: 0">
+                <!-- Estendiamo <input> tag con una variabile di riferimento del modello 
+                    che può essere utilizzata per accedere al controllo
+                     della casella di input dall'interno del modello stesso. -->
+                <!-- Con la direttiva ngModel creiamo un'istanza FormControl 
+                    dal modello di dominio e l'associamo a un elemento di controllo del modulo. -->
+                <input ngModel #todoTextField="ngModel" required minlength="2" name="text" class="form-control mx-2"
+                    type="text" placeholder="Type todo text here ...">
+                <button type="submit" class="btn btn-primary alt-gradient-button">
+                    <i class="bi bi-plus-circle bootstrap-icons"></i>
+                    Add
+                </button>
+            </div>
+
+            <div class="m-2" *ngIf="todoTextField.invalid && showValidationErrors">
+                <p class="text-danger" *ngIf="todoTextField.errors && todoTextField.errors['required']">Please enter the
+                    text of your todo</p>
+                <p class="text-danger" *ngIf="todoTextField.errors && todoTextField.errors['minlength']">Todo text must
+                    be at least 2 characters
+                </p>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="todos-list-filters d-flex justify-content-end mx-4">
+            <button class="btn btn-light" *ngIf="sortByUpdatedDate === 'asc'" (click)="sortTodoByUpdateDate()">
+                <i class="bi bi-sort-up bootstrap-icons"></i>
+            </button>
+            <button class="btn btn-light" *ngIf="sortByUpdatedDate === 'desc'" (click)="sortTodoByUpdateDate()">
+                <i class="bi bi-sort-down bootstrap-icons"></i>
+            </button>
+        </div>
+        <div class="todos-list">
+            <app-todo-item *ngFor="let todo of todos | sortBy:sortByUpdatedDate" [todo]="todo" (todoClicked)="toggleCompleted(todo)"
+                (editClicked)="editTodo(todo)" (deleteClicked)="deleteTodo(todo)">
+            </app-todo-item>
+        </div>
+    </div>
+</section>

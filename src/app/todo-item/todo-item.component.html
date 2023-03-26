@@ -1,0 +1,24 @@
+<div class="todo-item" (click)="onTodoClicked()" [class.completed]="todo.completed">
+    <div class="check-box">
+        <i class="bi bi-check-circle bootstrap-icons"></i>
+    </div>
+
+    <div>
+        <div class="todo-text">
+            {{todo.text}}
+        </div>
+        <div class="todo-text" style="font-size: 10px;">
+            Modified date: {{todo.updateDate | date: 'dd/MM/yyyy hh:mm'}}
+        </div>
+    </div>
+
+    <div class="todo-controls-box" (click)="$event.stopPropagation()">
+        <button class="btn btn-light todo-control-button" (click)="onEditClicked()" [disabled]="todo.completed">
+            <i class="bi bi-pencil-square bootstrap-icons"></i>
+        </button>
+        <button class="btn btn-light todo-control-button" (click)="onDeleteClicked()" [disabled]="todo.completed">
+            <i class="bi bi-trash bootstrap-icons"></i>
+        </button>
+    </div>
+
+</div>
